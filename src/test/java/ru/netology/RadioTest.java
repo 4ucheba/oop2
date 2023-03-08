@@ -18,6 +18,7 @@ public class RadioTest {
 
         Assertions.assertEquals(expected, actual);
     }
+
     @Test
     public void shouldSetStationIncorrectMore9() {
         Radio fmstation = new Radio();
@@ -94,6 +95,7 @@ public class RadioTest {
 
         Assertions.assertEquals(expected, actual);
     }
+
     @Test
     public void shouldBePrevVolume() {
         Radio fmstation = new Radio();
