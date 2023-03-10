@@ -8,8 +8,19 @@ import static org.junit.jupiter.api.Assertions.*;
 public class RadioTest {
 
     @Test
-    public void shouldSetStationIncorrectLess0() {
+    public void shouldSetStationCorrect() {
         Radio fmstation = new Radio();
+
+        fmstation.setStation(8);
+
+        int expected = 8;
+        int actual = fmstation.getCurrentStation();
+
+        Assertions.assertEquals(expected, actual);
+    }
+    @Test
+    public void shouldSetStationIncorrectLess0() {
+        Radio fmstation = new Radio(30);
 
         fmstation.setStation(-1);
 
@@ -20,10 +31,10 @@ public class RadioTest {
     }
 
     @Test
-    public void shouldSetStationIncorrectMore9() {
-        Radio fmstation = new Radio();
+    public void shouldSetStationIncorrectMoreMaximum() {
+        Radio fmstation = new Radio(30);
 
-        fmstation.setStation(10);
+        fmstation.setStation(32);
 
         int expected = 0;
         int actual = fmstation.getCurrentStation();
@@ -33,12 +44,12 @@ public class RadioTest {
 
     @Test
     public void shouldBeNextStationMiddle() {
-        Radio fmstation = new Radio();
+        Radio fmstation = new Radio(30);
 
-        fmstation.setStation(7);
+        fmstation.setStation(25);
         fmstation.nextStation();
 
-        int expected = 8;
+        int expected = 26;
         int actual = fmstation.getCurrentStation();
 
         Assertions.assertEquals(expected, actual);
@@ -46,9 +57,9 @@ public class RadioTest {
 
     @Test
     public void shouldBeNextStationEdge() {
-        Radio fmstation = new Radio();
+        Radio fmstation = new Radio(30);
 
-        fmstation.setStation(9);
+        fmstation.setStation(29);
         fmstation.nextStation();
 
         int expected = 0;
@@ -59,12 +70,12 @@ public class RadioTest {
 
     @Test
     public void shouldBePrevStationMiddle() {
-        Radio fmstation = new Radio();
+        Radio fmstation = new Radio(30);
 
-        fmstation.setStation(7);
+        fmstation.setStation(25);
         fmstation.prevStation();
 
-        int expected = 6;
+        int expected = 24;
         int actual = fmstation.getCurrentStation();
 
         Assertions.assertEquals(expected, actual);
@@ -72,12 +83,12 @@ public class RadioTest {
 
     @Test
     public void shouldBePrevStationEdge() {
-        Radio fmstation = new Radio();
+        Radio fmstation = new Radio(30);
 
         fmstation.setStation(0);
         fmstation.prevStation();
 
-        int expected = 9;
+        int expected = 29;
         int actual = fmstation.getCurrentStation();
 
         Assertions.assertEquals(expected, actual);
@@ -85,7 +96,7 @@ public class RadioTest {
 
     @Test
     public void shouldBeNextVolume() {
-        Radio fmstation = new Radio();
+        Radio fmstation = new Radio(30);
 
         fmstation.setCurrentVolume(50);
         fmstation.increaseVolume();
@@ -98,7 +109,7 @@ public class RadioTest {
 
     @Test
     public void shouldBePrevVolume() {
-        Radio fmstation = new Radio();
+        Radio fmstation = new Radio(30);
 
         fmstation.setCurrentVolume(50);
         fmstation.decreaseVolume();
@@ -111,7 +122,7 @@ public class RadioTest {
 
     @Test
     public void shouldBeNextVolumeEdge100() {
-        Radio fmstation = new Radio();
+        Radio fmstation = new Radio(30);
 
         fmstation.setCurrentVolume(100);
         fmstation.increaseVolume();
@@ -124,7 +135,7 @@ public class RadioTest {
 
     @Test
     public void shouldBePrevVolumeEdge0() {
-        Radio fmstation = new Radio();
+        Radio fmstation = new Radio(30);
 
         fmstation.setCurrentVolume(0);
         fmstation.decreaseVolume();
