@@ -18,6 +18,7 @@ public class RadioTest {
 
         Assertions.assertEquals(expected, actual);
     }
+
     @Test
     public void shouldSetStationIncorrectLess0() {
         Radio fmstation = new Radio(30);
